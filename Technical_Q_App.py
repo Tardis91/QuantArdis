@@ -16,6 +16,11 @@ sns.set_theme(context="talk", style="whitegrid", palette="colorblind", color_cod
 # Download historical data for a stock (e.g., Apple)
 symbol = "AAPL"
 df = yf.download(symbol, start="2010-01-01", end="2019-12-31")
+# Convert 'month' to ordered categorical so seaborn can interpret the x-axis correctly
+month_order = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+               "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+df['month'] = pd.Categorical(df['Date'].dt.strftime("%b"), categories=month_order, ordered=True)
+
 df['Date'] = df.index
 df['year'] = df['Date'].dt.year
 df['month'] = df['Date'].dt.strftime("%b")
