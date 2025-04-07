@@ -42,3 +42,6 @@ sns.despine()
 plt.tight_layout()
 # plt.savefig("images/figure_6_2", dpi=200)  # Uncomment to save the figure
 plt.show()
+
+print(df.columns)  # Or use st.write(df.columns) if you're in Streamlit
+print(df.head())   # To inspect actual data
