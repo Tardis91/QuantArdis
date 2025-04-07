@@ -20,6 +20,14 @@ df['Date'] = df.index
 df['year'] = df['Date'].dt.year
 df['month'] = df['Date'].dt.strftime("%b")
 
+# Define month order and convert to categorical
+month_order = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+df['month'] = pd.Categorical(df['month'], categories=month_order, ordered=True)
+
+# Now plot
+sns.lineplot(data=df, x="month", y="Close", hue="year", style="year", legend="full", palette="colorblind")
+
 # Plotting the stock data (Close Price) with seasonal variation per month
 sns.lineplot(data=df, x="month", y="Close", hue="year", style="year", legend="full", palette="colorblind")
 
